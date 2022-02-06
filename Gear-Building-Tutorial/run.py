@@ -16,6 +16,7 @@ import shutil
 import os
 import sys
 from utils.singularity import mount_gear_home_to_tmp
+from pathlib import Path
 
 from utils.singularity import (
     check_for_singularity,
@@ -44,17 +45,24 @@ def main(gtk_context):
 
     ## Load in paths to input files for the gear
     message_file = gtk_context.get_input_path('message_file')
-
+    outstr=""
     while (num_rep > 0):                      # While the num_rep variable is greater than zero:
 
         print("Hello, {}!".format(my_name))   # Print "Hello Name!" every loop
         num_rep -= 1                          # Decrease the num_rep variable by one
+        outstr += "Hello, {}! \n".format(my_name)
 
     # Now read the custom message:
     message_file = open(message_file,'r')   # Open the file with the intent to read
     print('\n')                               # Print a blank line to separate the message from the "hello's"
     print(message_file.read())                # Read and print the file
     
+    outfile=Path(str(OUTPUT_DIR)+"/out.file")
+    with open(outfile, 'w') as f:
+        f.write(outstr)
+
+#    with open('/flywheel/v0/config.json', 'r') as f:
+#        print(f.read())
     
 
 
@@ -64,7 +72,7 @@ if __name__ == "__main__":
     config_path = scratch_dir / 'config.json'
     
     # Decide which env is available
-    use_singularity = check_for_singularity()
+    #use_singularity = check_for_singularity()
 
     # reset globals (poor form changing constants)
     global FLYWHEEL_BASE

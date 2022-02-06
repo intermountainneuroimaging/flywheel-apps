@@ -3,7 +3,7 @@
   "name": "hello-world",
   "label": "Hello World: My First Gear",
   "description": "My very first gear, developed along with the flywheel gear building tutorial.",
-  "version": "0.1.1",
+  "version": "0.1.6",
   "author": "Flywheel User",
   "maintainer": "Flywheel <support@flywheel.io>",
   "cite": "",
@@ -16,7 +16,7 @@
   "custom": {
     "gear-builder": {
       "category": "analysis",
-      "image": "amhe4269/gear-tutorial-hpc:0.1.0"
+      "image": "amhe4269/gear-tutorial-hpc:0.1.2"
     },
     "flywheel": {
       "suite": "Flywheel Training Gears"
