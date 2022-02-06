@@ -41,6 +41,7 @@ def mount_gear_home_to_tmp():
     work_dir = tempfile.mkdtemp(prefix=gear_temp_dir, dir="/tmp")
     new_FWV0 = Path(work_dir + FWV0)
     new_FWV0.mkdir(parents=True)
+    
     abs_path = Path(".").resolve()
     fw_paths = list(Path(FWV0).glob("*"))
 
@@ -49,7 +50,9 @@ def mount_gear_home_to_tmp():
             (new_FWV0 / fw_name.name).symlink_to(Path(FWV0) / fw_name.name)
         else:
             (new_FWV0 / fw_name.name).symlink_to(abs_path / fw_name.name)
+
     os.chdir(new_FWV0)
+    
     return new_FWV0
 
 
