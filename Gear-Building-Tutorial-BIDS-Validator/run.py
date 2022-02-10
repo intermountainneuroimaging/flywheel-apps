@@ -2,10 +2,6 @@
 # The Shebang tell the computer what to call the file with when it runs.
 # For more info:https://bash.cyberciti.biz/guide/Shebang
 
-# import sys
-# import zipfile
-# from pathlib import Path
-# import shutil
 
 import flywheel_gear_toolkit
 from flywheel_gear_toolkit.interfaces.command_line import exec_command
@@ -21,6 +17,7 @@ import os
 import sys
 from utils.singularity import mount_gear_home_to_tmp
 from pathlib import Path
+# import zipfile
 
 from utils.singularity import (
     check_for_singularity,
@@ -29,8 +26,6 @@ from utils.singularity import (
 )
 
 from utils.bids.run_level import get_run_level_and_hierarchy
-
-
 
 
 # globals will be set in __main__
@@ -46,7 +41,6 @@ def main(gtk_context):
     
     
     #look for subject and session info...
-#    bids_dir = Path(gtk_context.work_dir) / "bids"
     bids_dir = Path(FLYWHEEL_BASE / "work/bids")
     
     destination_id = gtk_context.destination["id"]
@@ -67,7 +61,7 @@ def main(gtk_context):
     
     print(str(bids_path))
     os.system('ls -l '+str(bids_path))
-    os.system('find '+str(bids_path))
+    os.system('ls -l '+str(bids_path)+'/sub-*/*')
     
     from bids_validator import BIDSValidator
     
@@ -78,51 +72,6 @@ def main(gtk_context):
     else:
         print('Invalid BIDS format for subject "%s", session "%s"' % (hierarchy["subject_label"],hierarchy["session_label"]))
             
-    
-#    ## Load in values from the gear configuration
-#    my_name = config['my_name']
-#    num_rep = config['num_rep']
-#
-#    ## Load in paths to input files for the gear
-#    message_file = gtk_context.get_input_path('message_file')
-#    outstr=""
-#    while (num_rep > 0):                      # While the num_rep variable is greater than zero:
-#
-#        print("Hello, {}!".format(my_name))   # Print "Hello Name!" every loop
-#        num_rep -= 1                          # Decrease the num_rep variable by one
-#        outstr += "Hello, {}! \n".format(my_name)
-#
-#    # Now read the custom message:
-#    message_file = open(message_file,'r')   # Open the file with the intent to read
-#    print('\n')                               # Print a blank line to separate the message from the "hello's"
-#    print(message_file.read())                # Read and print the file
-#
-#    outfile=Path(str(OUTPUT_DIR)+"/out.file")
-#    with open(outfile, 'w') as f:
-#        f.write(outstr)
-#
-#    with open('/flywheel/v0/config.json', 'r') as f:
-#        print(f.read())
-#
-#    #look for subject and session info...
-#    bids_dir = Path(gtk_context.work_dir) / "bids"
-#
-#    destination_id = gtk_context.destination["id"]
-#    hierarchy = get_run_level_and_hierarchy(gtk_context.client, destination_id)
-#
-#
-#    print('Downloading BIDS for subject "%s"', hierarchy["subject_label"])
-    
-    # only download data for this session AND this subject
-#    bids_path = gtk_context.download_project_bids(
-#        src_data=src_data,
-#        folders=folders,
-#        dry_run=dry_run,
-#        subjects=[hierarchy["subject_label"]],
-#        sessions=[hierarchy["session_label"]],
-#    )
-
-
 
 if __name__ == "__main__":
     #always run in a newly created "scratch" directory in /tmp/...
@@ -149,7 +98,7 @@ if __name__ == "__main__":
 
     
     with flywheel.GearContext() as gtk_context:
-                return_code = main(gtk_context)
+        return_code = main(gtk_context)
 
     # clean up (might be necessary when running in a shared computing environment)
     for thing in scratch_dir.glob("*"):

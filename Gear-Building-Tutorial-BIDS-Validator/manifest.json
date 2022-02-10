@@ -3,7 +3,7 @@
   "name": "testing-bids-validator",
   "label": "Hello World: Advanced Using BIDS Validator",
   "description": "Exploring gear building functionality, hello world gears are tutorials for running gears. This tutorial will use use a availible tool, BIDS validator to explore the use of BIDS formatted analysis pipelines.",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "author": "Amy Hegarty",
   "maintainer": "Amy Hegarty <amhe4269@colorado.edu>",
   "cite": "",
