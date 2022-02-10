@@ -35,8 +35,6 @@ from utils.bids.run_level import get_run_level_and_hierarchy
 
 def main(gtk_context):
 
-    import flywheel
-
     config=gtk_context.config
     
     
