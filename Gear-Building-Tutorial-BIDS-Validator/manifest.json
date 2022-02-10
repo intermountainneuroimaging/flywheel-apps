@@ -1,0 +1,34 @@
+
+{
+  "name": "testing-bids-validator",
+  "label": "Hello World: Advanced Using BIDS Validator",
+  "description": "Exploring gear building functionality, hello world gears are tutorials for running gears. This tutorial will use use a availible tool, BIDS validator to explore the use of BIDS formatted analysis pipelines.",
+  "version": "0.1.7",
+  "author": "Amy Hegarty",
+  "maintainer": "Amy Hegarty <amhe4269@colorado.edu>",
+  "cite": "",
+  "license": "Apache-2.0",
+  "url": "",
+  "source": "",
+  "environment": {
+    "FLYWHEEL": "/flywheel/v0"
+  },
+  "custom": {
+    "gear-builder": {
+      "category": "analysis",
+      "image": "amhe4269/gear-tutorial-bidsvalidator:0.1.1"
+    },
+    "flywheel": {
+      "suite": "Flywheel Training Gears"
+    }
+  },
+  "inputs": {
+    "key": {
+        "base": "api-key",
+        "read-only": true
+    }
+  },
+  "config": {
+  },
+  "command": "python run.py"
+}
