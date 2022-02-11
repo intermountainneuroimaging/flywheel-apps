@@ -11,7 +11,6 @@ from flywheel_gear_toolkit.utils.zip_tools import unzip_archive, zip_output
 from flywheel import ApiException
 from flywheel_bids.export_bids import download_bids_dir
 
-import flywheel
 import shutil
 import os
 import sys
@@ -37,7 +36,6 @@ def main(gtk_context):
 
     config=gtk_context.config
     
-    
     #look for subject and session info...
     bids_dir = Path(FLYWHEEL_BASE / "work/bids")
     
@@ -59,7 +57,7 @@ def main(gtk_context):
     
     print(str(bids_path))
     os.system('ls -l '+str(bids_path))
-    os.system('ls -l '+str(bids_path)+'/sub-*/*')
+    os.system('ls -l '+str(bids_path)+'/sub-*/*/*')
     
     from bids_validator import BIDSValidator
     
@@ -95,7 +93,7 @@ if __name__ == "__main__":
     INPUT_DIR = FLYWHEEL_BASE / "input"
 
     
-    with flywheel.GearContext() as gtk_context:
+    with flywheel_gear_toolkit.GearToolkitContext() as gtk_context:
         return_code = main(gtk_context)
 
     # clean up (might be necessary when running in a shared computing environment)
@@ -108,4 +106,4 @@ if __name__ == "__main__":
     os.removedirs(scratch_dir)
 
     sys.exit(return_code)
-    
+   
